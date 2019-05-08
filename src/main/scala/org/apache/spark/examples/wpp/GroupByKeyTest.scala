@@ -13,11 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.spark.examples
+package org.apache.spark.examples.wpp
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-// 为了测试 spark 内部原理写的一个程序，读者可以忽略之
+/***
+  *
+  * 为了测试 spark 内部原理写的一个程序，读者可以忽略之
+  * spark-submit --master yarn --class org.apache.spark.examples.SparkHelloWorld --executor-memory 4g --executor-cores 2 --num-executors 4   spark-examples_2.10-1.0-SNAPSHOT.jar hdfs://10.113.9.96/input/datatestout/out4.text
+  *
+  */
+
 object GroupByKeyTest {
 
   def main(args: Array[String]): Unit = {
@@ -27,6 +33,8 @@ object GroupByKeyTest {
     val sc = new SparkContext(sparkConf)
 
     val data = sc.makeRDD(List("pandas","numpy","pip","pip","pip"))
+// makeRDD 和 parallelize 是等价的。
+//    val data = sc.parallelize(List("pandas","numpy","pip","pip","pip"))
     //mapToPair
     val dataPair = data.map((_,1))
     //groupByKey

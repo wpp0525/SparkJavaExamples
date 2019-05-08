@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.spark.examples
+package org.apache.spark.examples.wpp
 
 import org.apache.spark.{HashPartitioner, SparkConf, SparkContext}
 

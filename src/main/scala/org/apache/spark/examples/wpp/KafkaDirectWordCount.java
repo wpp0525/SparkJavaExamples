@@ -1,4 +1,4 @@
-package com.spark.study.streaming;
+package org.apache.spark.examples.wpp;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,6 +21,10 @@ import org.apache.spark.streaming.kafka.KafkaUtils;
 
 import scala.Tuple2;
 
+/**
+ * 生产
+ *
+ * */
 public class KafkaDirectWordCount {
 
 	public static void main(String[] args) {
@@ -31,8 +35,9 @@ public class KafkaDirectWordCount {
 		Map<String, String> kafkaParams = new HashMap<String, String>();
 		// 我们这里是不需要zookeeper节点的啊,所以我们这里放broker.list
 		kafkaParams.put("metadata.broker.list", 
-				"192.168.80.201:9092,192.168.80.202:9092,192.168.80.203:9092");
-		
+//				"192.168.80.201:9092,192.168.80.202:9092,192.168.80.203:9092");
+				"10.201.1.192:9092,10.201.1.205:9092,10.201.1.231:9092");
+
 		// 然后创建一个set,里面放入你要读取的Topic,这个就是我们所说的,它给你做的很好,可以并行读取多个topic
 		Set<String> topics = new HashSet<String>();
 		topics.add("wordcount20160423");

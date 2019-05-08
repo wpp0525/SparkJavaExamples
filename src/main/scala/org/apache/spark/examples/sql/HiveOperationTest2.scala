@@ -19,21 +19,22 @@ package org.apache.spark.examples.sql
 import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.{SparkConf, SparkContext}
 
-object HiveOperationTest {
+object HiveOperationTest2 {
   def main(args: Array[String]): Unit = {
     if (args.length < 1) {
       System.err.println("Usage: <inpath>")
-      System.exit(1)
+//      System.exit(1)
     }
 
-    val inputFile = args(0)
+//    val inputFile = args(0)
+    val inputFile = "/input/datatest/web-Google.txt"
 
     val conf = new SparkConf().setAppName("HiveOperationTest").setMaster("local[*]")
     val sc = new SparkContext(conf)
     val sqlContext = new HiveContext(sc)
 
     // create table
-    sqlContext.sql("CREATE TABLE IF NOT EXISTS weather (date STRING, city STRING, minTem Int, maxTem Int) row format delimited fields terminated by '\t'")
+    sqlContext.sql("CREATE TABLE IF NOT EXISTS score (user_id STRING, score Int) row format delimited fields terminated by '\t'")
     sqlContext.sql(s"LOAD DATA INPATH '${inputFile}' INTO TABLE weather")
 
     // Queries are expressed in HiveQL

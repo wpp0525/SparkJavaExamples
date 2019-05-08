@@ -1,8 +1,8 @@
-package concurrent.base;
+package concurrent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
+
 /**
  * @author alienware
  *

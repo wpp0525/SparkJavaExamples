@@ -1,4 +1,4 @@
-package concurrent.base.lock;
+package concurrent.lock;
 
 import java.util.concurrent.locks.ReentrantLock;
 /**

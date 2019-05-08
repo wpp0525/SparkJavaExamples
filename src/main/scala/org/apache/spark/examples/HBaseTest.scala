@@ -21,6 +21,7 @@ import org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor, TableName}
 import org.apache.spark.{SparkConf, SparkContext}
 
 object HBaseTest {
+
   def main(args: Array[String]): Unit = {
     if (args.length < 1) {
       System.err.println("Usage: <table_name>")

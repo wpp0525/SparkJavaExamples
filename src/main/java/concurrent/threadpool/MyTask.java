@@ -1,4 +1,4 @@
-package concurrent.base.threadpool;
+package concurrent.threadpool;
 
 public class MyTask implements Runnable {
 

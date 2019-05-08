@@ -22,12 +22,13 @@ import org.apache.spark.{SparkConf, SparkContext}
 import scala.util.Random
 //测试数据
 object DummyCountScala {
+
 	def main(args: Array[String]) {
 
 		var sparkConf = new SparkConf().setAppName("DummyCountScala")
-		if (Env.TEST) {
+//		if (Env.TEST) {
 			sparkConf.setMaster("local[2]")
-		}
+//		}
 		val sc = new SparkContext(sparkConf)
 
 		val alist =  List.range(1L, 8L)

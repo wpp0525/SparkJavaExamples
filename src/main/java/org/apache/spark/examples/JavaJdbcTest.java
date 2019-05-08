@@ -38,21 +38,24 @@ public class JavaJdbcTest {
 
     private static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
 
-    private static final String MYSQL_CONNECTION_URL = "jdbc:mysql://hlg-2p239-fandongsheng:3306/test";
+//    private static final String MYSQL_CONNECTION_URL = "jdbc:mysql://hlg-2p239-fandongsheng:3306/test";
+    private static final String MYSQL_CONNECTION_URL = "jdbc:mysql://10.200.3.184:3306/crm_user";
 
-    private static final String MYSQL_USERNAME = "root";
+    private static final String MYSQL_USERNAME = "lvmama_admin";
 
-    private static final String MYSQL_PWD = "bfd_123";
+    private static final String MYSQL_PWD = "6HPdboD";
 
     public static void main(String[] args) {
-        SparkConf sparkConf = new SparkConf().setAppName("JavaJdbcTest");
+        SparkConf sparkConf = new SparkConf().setAppName("JavaJdbcTest").setMaster("local");
         JavaSparkContext jsc = new JavaSparkContext(sparkConf);
 
         DbConnection dbConnection = new DbConnection(MYSQL_DRIVER, MYSQL_CONNECTION_URL, MYSQL_USERNAME, MYSQL_PWD);
 
         // Load data from MySQL
-        JdbcRDD<Object[]> jdbcRDD = new JdbcRDD<>(jsc.sc(), dbConnection, "select name,age from stu where age >= ? and age <= ?", 18, 19, 10, new MapResult(),
+        JdbcRDD<Object[]> jdbcRDD = new JdbcRDD<>(jsc.sc(), dbConnection,
+                "select user_id,user_name from user_user where user_id >= ? and user_id <= ?" , 18, 19, 10, new MapResult(),
                                                   ClassManifestFactory$.MODULE$.fromClass(Object[].class));
+
 
         // Convert to JavaRDD
         JavaRDD<Object[]> javaRDD = JavaRDD.fromRDD(jdbcRDD, ClassManifestFactory$.MODULE$.fromClass(Object[].class));
@@ -65,6 +68,7 @@ public class JavaJdbcTest {
             }
         }).collect();
 
+        System.out.println("print_result");
         for (String fullName : employeeFullNameList) {
             System.out.println(fullName);
         }

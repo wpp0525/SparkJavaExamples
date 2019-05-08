@@ -18,22 +18,28 @@ package org.apache.spark.examples.sql
 
 import java.util.Properties
 
+import org.apache.hadoop.io.IOUtils
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkConf, SparkContext}
 
+// 读取mysql的数据，并做展示，Dataframe操作。
 object LoadJDBCTest {
   def main(args: Array[String]): Unit = {
+    // jdbc:mysql://10.113.9.95:3306/crm_hive DBS hive 123456
     if (args.length < 4) {
       System.err.println("Usage: <conn-url> <table-for-read> <user> <passwd>")
-      System.exit(1)
+//      System.exit(1)
     }
+
 
     val url = args(0)
     val table = args(1)
     val user = args(2)
     val passwd = args(3)
 
-    val conf = new SparkConf().setAppName("LoadJDBCTest")
+
+    val conf = new SparkConf().setAppName("LoadJDBCTest").setMaster("local[*]")
+
     val sc = new SparkContext(conf)
     val sqlContext = new SQLContext(sc)
 
@@ -47,6 +53,12 @@ object LoadJDBCTest {
 
     df.show()
 
+    println("distinct show: "    )
+    df.where("DB_ID =1").distinct().select("DB_ID","DB_LOCATION_URI","NAME").show()
+    df.persist()
+
+//    IOUtils.copyBytes()
+    Thread.sleep(600*1000)
     sc.stop()
   }
 }

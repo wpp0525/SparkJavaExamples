@@ -1,4 +1,4 @@
-package concurrent.base.ThreadLocal;
+package concurrent.ThreadLocal;
 
 import java.sql.Connection;
 import java.sql.SQLException;

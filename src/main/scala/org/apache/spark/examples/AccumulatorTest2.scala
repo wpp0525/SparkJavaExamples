@@ -20,6 +20,7 @@ import org.apache.spark.{AccumulatorParam, SparkConf, SparkContext}
 import scala.collection.mutable.Map
 import scala.util.Random
 
+// 重写累计器
 object MapAccumulatorParam extends AccumulatorParam[Map[String, Int]] {
   def addInPlace(t1: Map[String, Int], t2: Map[String, Int]): Map[String, Int] = {
     for ((k, v) <- t2) {
@@ -36,6 +37,7 @@ object MapAccumulatorParam extends AccumulatorParam[Map[String, Int]] {
 }
 
 object AccumulatorTest2 {
+
   def main(args: Array[String]): Unit = {
     val sparkConf = new SparkConf().setAppName("AccumulatorTest2")
     val ctx = new SparkContext(sparkConf)

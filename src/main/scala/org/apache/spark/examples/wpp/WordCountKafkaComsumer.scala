@@ -9,7 +9,7 @@ import org.apache.spark.streaming.dstream.DStream
 import org.apache.spark.streaming.kafka.KafkaUtils
 import kafka.serializer.StringDecoder
 
-object WordCountKafka {
+object WordCountKafkaComsumer {
   def main(args: Array[String]): Unit = {
 
     val sparkConf = new SparkConf().setAppName("WordCount").setMaster("local[2]") //至少2个线程，一个DRecive接受监听端口数据，一个计算

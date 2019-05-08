@@ -28,7 +28,7 @@ object HiveOperationTest {
 
     val inputFile = args(0)
 
-    val conf = new SparkConf().setAppName("HiveOperationTest")
+    val conf = new SparkConf().setAppName("HiveOperationTest").setMaster("local[*]")
     val sc = new SparkContext(conf)
     val sqlContext = new HiveContext(sc)
 
@@ -39,10 +39,10 @@ object HiveOperationTest {
     // Queries are expressed in HiveQL
     sqlContext.sql("select city, avg(minTem) from weather group by city").collect().foreach(println)
 
-    // 使用 udf
-    sqlContext.udf.register("class", (s: Int) => if (s <= 20) "lower" else "high")
+    // 使用 udf,
+    sqlContext.udf.register("udfclass", (s: Int) => if (s <= 20) "lower" else "high")
 
-    sqlContext.sql("select city, maxTem, class(maxTem) from weather").collect().foreach(println)
+    sqlContext.sql("select city, maxTem, udfclass(maxTem) from weather").collect().foreach(println)
 
     sc.stop()
   }

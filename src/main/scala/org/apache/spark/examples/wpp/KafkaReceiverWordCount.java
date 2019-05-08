@@ -1,4 +1,4 @@
-package com.spark.study.streaming;
+package org.apache.spark.examples.wpp;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,13 +16,17 @@ import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.apache.spark.streaming.kafka.KafkaUtils;
 
 import scala.Tuple2;
-
+/**
+ * Receiver有个劣势，
+ *
+ * */
 public class KafkaReceiverWordCount {
 
-	// ./bin/kafka-topics.sh --zookeeper spark001:2181,spark002:2181,spark003:81 --topic wordcount --replication-factor 1 --partitions 1 --create
-	// ./bin/kafka-console-producer.sh --topic wordcount --broker-list spark001:9092,spark002:9092,spark003:9092
-	
-	public static void main(String[] args) {
+
+	// ./bin/kafka-topics.sh --zookeeper techtest203-88:2181,testtech203-177:2181,testtech203-191:2181 --topic wordcount20160423 --replication-factor 1 --partitions 1 --create
+	// ./bin/kafka-console-producer.sh --topic wordcount20160423 --broker-list 10.201.1.192:9092,10.201.1.205:9092,10.201.1.231:9092
+
+    public static void main(String[] args) {
 		SparkConf conf = new SparkConf().setAppName("wordcount").setMaster("local[2]");
 		JavaStreamingContext jssc = new JavaStreamingContext(conf,Durations.seconds(5));
 		
@@ -33,7 +37,7 @@ public class KafkaReceiverWordCount {
 		// kafka这种创建的流,是pair的形式,有俩个值,但第一个值通常都是Null啊
 		JavaPairReceiverInputDStream<String, String> lines = KafkaUtils.createStream(
 				jssc, 
-				"192.168.80.201:2181,192.168.80.202:2181,192.168.80.203:2181", 
+				"techtest203-88:2181,testtech203-177:2181,testtech203-191:2181",
 				"WordcountConsumerGroup",  
 				topicThreadMap);
 		

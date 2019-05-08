@@ -1,4 +1,4 @@
-package concurrent.base;
+package concurrent;
 
 
 public class ThreadAddDecTest1 {

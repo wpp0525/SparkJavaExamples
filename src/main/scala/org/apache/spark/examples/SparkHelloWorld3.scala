@@ -8,7 +8,7 @@ import org.apache.spark.{SparkConf, SparkContext}
   *
   *  spark-submit --master yarn --class org.apache.spark.examples.SparkHelloWorld --executor-memory 4g --executor-cores 2 --num-executors 4   spark-examples_2.10-1.0-SNAPSHOT.jar hdfs://10.113.9.96/input/datatestout/out4.text
  */
-object SparkHelloWorld {
+object SparkHelloWorld3 {
 
   def main(args: Array[String]) {
     val conf = new SparkConf()
@@ -30,8 +30,6 @@ object SparkHelloWorld {
     val wc = lines.flatMap(_.split(" ")).map(word => (word, 1)).reduceByKey(_ + _)
 //    wc.partitions.length
 //    wc.glom.collect()
-
-    wc.count()
 
     wc.saveAsTextFile(args(0))
 

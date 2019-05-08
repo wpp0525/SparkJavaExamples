@@ -1,4 +1,4 @@
-package concurrent.base.concurrent017;
+package concurrent.concurrent017;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

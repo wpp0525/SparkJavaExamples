@@ -1,4 +1,4 @@
-package concurrent.base;
+package concurrent;
 
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;

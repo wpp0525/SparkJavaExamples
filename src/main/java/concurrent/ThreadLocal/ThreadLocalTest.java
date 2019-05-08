@@ -1,4 +1,4 @@
-package concurrent.base.ThreadLocal;
+package concurrent.ThreadLocal;
 
 
 public class ThreadLocalTest {

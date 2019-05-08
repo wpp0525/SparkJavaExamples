@@ -1,20 +1,21 @@
 package org.apache.spark.examples.wpp
 
-import org.apache.spark.SparkConf
-import org.apache.spark.SparkContext
-import org.apache.spark.streaming.StreamingContext
-import org.apache.spark.streaming.Durations
-import org.apache.spark.storage.StorageLevel
-import org.apache.spark.streaming.dstream.DStream
-import org.apache.spark.streaming.kafka.KafkaUtils
-import kafka.serializer.StringDecoder
+import java.text.SimpleDateFormat
 
-object WordCountKafka {
+import kafka.serializer.StringDecoder
+import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.streaming.dstream.DStream
+import org.apache.spark.streaming.{Durations, Seconds, StreamingContext}
+import org.apache.spark.streaming.kafka.KafkaUtils
+
+object WordCountKafkaSum {
   def main(args: Array[String]): Unit = {
 
-    val sparkConf = new SparkConf().setAppName("WordCount").setMaster("local[2]") //至少2个线程，一个DRecive接受监听端口数据，一个计算
-    val sc = new StreamingContext(sparkConf, Durations.seconds(10));
+    val sparkConf = new SparkConf().setAppName("WordCount2").setMaster("local[2]") //至少2个线程，一个DRecive接受监听端口数据，一个计算
+//    sparkConf.setLogLevel("WARN")
 
+    val sc = new StreamingContext(sparkConf, Durations.seconds(15));
+//    sc.setLogLevel("WARN")
     // 首先要创建一份kafka参数map
     // 我们这里是不需要zookeeper节点的啊,所以我们这里放broker.list
     val kafkaParams = Map[String, String](  
@@ -30,10 +31,26 @@ object WordCountKafka {
       sc, kafkaParams, topics)
 
     val wordrdd = linerdd.flatMap { _._2.split(" ") }
-    val resultrdd = wordrdd.map { x => (x, 1) }.reduceByKey { _ + _ }
-    //    resultrdd.map(x => println(x._1+"--"+x._2))
+    val regex="""^\d+$""".r
+    val resultrdd = wordrdd.filter( regex.findFirstMatchIn(_) != None ).map { x => (x,1 ) }.reduceByKey { _ + _ }
 
-    resultrdd.print()
+    val resultrdd2 = resultrdd.map(item  => (item._1.toInt, item._2.toInt))
+    resultrdd2.print()
+
+    println("计算相关的和")
+    val resultRdd3 =  resultrdd2.map(item=> item._1.toInt*item._2.toInt).reduce(_+_)
+
+    resultRdd3.window(Seconds(15),Seconds(20))
+    resultRdd3.print()
+
+//    resultRdd3.reduceByWindow((s1,s2)=>{
+//      s1 + ":"+s2
+//    },Seconds(60),Seconds(10)).print()
+
+
+
+//    resultRdd3.saveAsTextFiles("./wpprest")
+
     sc.start()
     sc.awaitTermination()
     sc.stop()

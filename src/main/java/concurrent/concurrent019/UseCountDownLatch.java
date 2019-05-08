@@ -1,4 +1,4 @@
-package concurrent.base.concurrent019;
+package concurrent.concurrent019;
 
 import java.util.concurrent.CountDownLatch;
 

@@ -1,4 +1,4 @@
-package concurrent.base.ThreadLocal;
+package concurrent.ThreadLocal;
 
 public class ThreadLocalTestNum {
 //    final static int i ;  //无默认值不可以默认执行。

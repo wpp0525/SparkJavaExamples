@@ -1,4 +1,4 @@
-package concurrent.base;
+package concurrent;
 
 /**
  * volatile变量自增运算测试

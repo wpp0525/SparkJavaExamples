@@ -17,8 +17,6 @@ package org.apache.spark.examples
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-import scala.util.Random
-
 /**
   * 累加器
   * 累加器提供了将工作节点中的值聚合到驱动器程序中的简单方法。累加器一个常见的用途就是在调试时对作业执行过程中的事件进行计数。
@@ -26,38 +24,34 @@ import scala.util.Random
   *
   */
 
-
-object AccumulatorTest {
+object AccumulatorTest3 {
   def main(args: Array[String]): Unit = {
-    val sparkConf = new SparkConf().setAppName("AccumulatorTest").setMaster("local")
+    val sparkConf = new SparkConf().setAppName("AccumulatorTest3").setMaster("local")
     val ctx = new SparkContext(sparkConf)
 
     //在驱动端执行
-    val accum = ctx.accumulator(0, "My Accumulator")
+    val files = ctx.textFile("E://java//ClickHousePreparedStatementImpl.java")
+    var blankLines = ctx.accumulator(2,"qwpp")//创建accumulator[0]并初始化为0
 
-    ctx.parallelize(1 to 1000000, 10).foreach(i => {
+    val blankLines2 = ctx.accumulator(0,"qwpp2")//创建accumulator[0]并初始化为0
+    println("blankLines:" + blankLines)
 
-        accum += 1
+    println("files_line:" + files.count())
+
+    println(" files.collect()" +  files.collect())
+
+    val callSigns = files.flatMap(line => {
+
+      if(line.contains("String") ){
+        blankLines += 1
+      }
+      line
     })
 
+    callSigns.count()
+    println("accumate :" + blankLines)
 
-    println("accum: " + accum.value )
-    println("accum2: " + accum )
-
-//    val data = sc.parallelize(
-//      List(
-//        ("13909029812",("20170507","http://www.baidu.com")),
-//        ("13909029812",("20170507","http://www.51cto.com")),
-//        ("18089376778",("20170401","http://www.google.com")),
-//        ("18089376778",("20170508","http://www.taobao.com"))
-//      )
-//    )
-//    data.aggregateByKey(scala.collection.mutable.Set[(String, String)](), 200) ((set, item) =>
-//          {
-//            set += item
-//          }, (set1, set2) => set1 union set2
-//    ).mapValues(x => x.toIterable).collect
-
+    Thread.sleep(600000)
     ctx.stop()
   }
 }

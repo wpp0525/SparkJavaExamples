@@ -82,22 +82,22 @@ object KafkaWordCountProducerBatch {
     props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
       "org.apache.kafka.common.serialization.StringSerializer")
 
-    val producer = new KafkaProducer[String, String](props)
-
-    // Send some messages
-    val startTime = System.currentTimeMillis()
-
-    // 持续发送一段时间，是不是要爆了
-    //while ((System.currentTimeMillis() - startTime) <= durationSeconds.toInt * 1000) {
-    for (i <- 1 to durationSeconds.toInt) {
-      (1 to messagesPerSec.toInt).foreach { messageNum =>
-        val str = (1 to wordsPerMessage.toInt).mkString(" ")
-
-        val message = new ProducerRecord[String, String](topic, null, str)
-        producer.send(message)
-      }
-
-      Thread.sleep(1000)
-    }
+//    val producer = new KafkaProducer[String, String](props)
+//
+//    // Send some messages
+//    val startTime = System.currentTimeMillis()
+//
+//    // 持续发送一段时间，是不是要爆了
+//    //while ((System.currentTimeMillis() - startTime) <= durationSeconds.toInt * 1000) {
+//    for (i <- 1 to durationSeconds.toInt) {
+//      (1 to messagesPerSec.toInt).foreach { messageNum =>
+//        val str = (1 to wordsPerMessage.toInt).mkString(" ")
+//
+//        val message = new ProducerRecord[String, String](topic, null, str)
+//        producer.send(message)
+//      }
+//
+//      Thread.sleep(1000)
+//    }
   }
 }
