@@ -29,9 +29,9 @@ public class MyTask implements Runnable {
 	@Override
 	public void run() {
 		try {
-			System.out.println("run taskId =" + this.taskId);
+			System.out.println("start run taskId =" + this.taskId);
 			Thread.sleep(5*1000);
-			//System.out.println("end taskId =" + this.taskId);
+			System.out.println("end taskId =" + this.taskId);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}		

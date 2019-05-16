@@ -9,14 +9,14 @@ import static java.lang.Double.sum;
 public class LambdaTest {
     public static void main(String[] args) {
 
-        Thread tt = new Thread( () ->System.out.println("wpp"));
-        tt.start();
-
-
-        MathOperation sum = (int a, int b) -> {
-           return a+ b;
-        };
-        System.out.println(sum(3,5));
+//        Thread tt = new Thread( () ->System.out.println("wpp"));
+//        tt.start();
+//
+//
+//        MathOperation sum = (int a, int b) -> {
+//           return a+ b;
+//        };
+//        System.out.println(sum(3,5));
 
 
     }

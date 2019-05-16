@@ -19,7 +19,9 @@ package org.apache.spark.examples.streaming
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
 
+
 object StatefulNetworkWordCount {
+
   def updateFunction(newValues: Seq[Int], runningCount: Option[Int]): Option[Int] = {
     val newCount = newValues.reduce(_ + _) + runningCount.getOrElse(0)
     Some(newCount)

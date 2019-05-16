@@ -23,6 +23,7 @@ public class UseThreadPoolExecutor2 implements Runnable{
 	}
 	
 	public static void main(String[] args) throws Exception{
+
 		//System.out.println(Runtime.getRuntime().availableProcessors());
 		BlockingQueue<Runnable> queue = 
 				//new LinkedBlockingQueue<Runnable>();
@@ -40,6 +41,8 @@ public class UseThreadPoolExecutor2 implements Runnable{
 		Thread.sleep(1000);
 		System.out.println("queue size:" + queue.size());		//10
 		Thread.sleep(2000);
+
+
 	}
 
 

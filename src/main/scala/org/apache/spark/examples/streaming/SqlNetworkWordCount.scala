@@ -27,9 +27,12 @@ case class Record(word: String)
   *  nc -l 9999
   *  crm-master1 9999
   *
+  * 可以查看相关数据一直在运行。
+  *  http://10.45.0.60:4040/stages/
   * */
 object SqlNetworkWordCount {
   def main(args: Array[String]) {
+
     if (args.length < 2) {
       System.err.println("Usage: <hostname> <port>")
       System.exit(1)
@@ -46,6 +49,12 @@ object SqlNetworkWordCount {
     // Replication necessary in distributed scenario for fault tolerance.
     val lines = ssc.socketTextStream(args(0), args(1).toInt, StorageLevel.MEMORY_AND_DISK_SER)
     val words = lines.flatMap(_.split(" "))
+
+    //梅2秒计算，前10s的数据
+//    val   wordCounts = words.map(x => (x,1))
+//        .reduceByKeyAndWindow(_ + _, _ - _, Seconds(10), Seconds(2), 2)
+//        .filter(x => x._2 > 0)
+//    wordCounts.print()
 
     // Convert RDDs of the words DStream to DataFrame and run SQL query
     words.foreachRDD((rdd: RDD[String], time: Time) => {

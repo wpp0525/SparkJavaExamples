@@ -3,7 +3,8 @@ package algorithm;
 import java.util.Scanner;
 
 /*
- * 二分查找
+ * 冒泡排序
+ *
  */
 public class SortDemo {
     public static void main(String[] args) {

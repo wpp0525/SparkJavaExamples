@@ -37,7 +37,6 @@ public class TestMain {
 
 
 
-
         ReferenceQueue<String> queue = new ReferenceQueue<String>();
         PhantomReference<String> pr = new PhantomReference<String>(new String("hello"), queue);
         System.out.println(pr.get());

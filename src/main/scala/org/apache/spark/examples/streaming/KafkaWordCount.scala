@@ -51,8 +51,8 @@ object KafkaWordCount {
 
     // 统计的是 10 分钟内的单词数量，每隔 10 秒统计 1 次
     val wordCounts = words.map(x => (x, 1L))
-      .reduceByKeyAndWindow(_ + _, _ - _, Seconds(10), Seconds(2), 2).
-      filter(x => x._2 > 0)
+      .reduceByKeyAndWindow(_ + _, _ - _, Seconds(10), Seconds(2), 2)
+      .filter(x => x._2 > 0)
 
     wordCounts.print()
 

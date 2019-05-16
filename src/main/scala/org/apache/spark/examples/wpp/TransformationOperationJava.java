@@ -22,7 +22,7 @@ import scala.Tuple2;
  *
  */
 @SuppressWarnings(value = {"unused", "unchecked"})
-public class TransformationOperation {
+public class TransformationOperationJava {
 
     public static void main(String[] args) {
         // map();

@@ -9,8 +9,8 @@
         <module name="spark-examples_2.10" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="spark-examples_2.10" target="1.7" />
+    <bytecodeTargetLevel target="8">
+      <module name="spark-examples_2.10" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
