@@ -19,7 +19,7 @@ public class MaximumSubarray {
         int max = A[0];  //当成最大值
 
         for (int i = 1; i < A.length - 1; i++) {
-            A[i] = Math.max(A[i], A[i] + A[i + 1]); //一定是 a[i],递增的情况
+            A[i] = Math.max(A[i], A[i] + A[i+1]); //一定是 a[i],递增的情况
             max = Math.max(max, A[i+1]);
         }
         return max;

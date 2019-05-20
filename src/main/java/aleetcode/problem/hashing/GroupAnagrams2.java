@@ -28,7 +28,7 @@ import java.util.List;
  * 那么会得到相同的结果，所以重新排序是判断是否互为错位词的方法，由于错位词重新排序后都会得到相同的字符串，
  * 我们以此作为key，将所有错位词都保存到字符串数组中，建立key和字符串数组之间的映射，最后再存入结果res中即可.
  */
-public class GroupAnagrams {
+public class GroupAnagrams2 {
 
     private int[] A = new int[256];
     private HashMap<String, List<String>> hashMap = new HashMap<>(); //相同的错位词都包含在一个值里。
@@ -44,22 +44,22 @@ public class GroupAnagrams {
 //        String[] strs = {"huh", "tit"};
         String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
 
-        List<List<String>> result = new GroupAnagrams().groupAnagrams(strs);
+        List<List<String>> result = new GroupAnagrams2().groupAnagrams(strs);
         for (List<String> row : result) {
-            for (String s : row)
+            for (String s : row) {
                 System.out.println(s);
+            }
             System.out.println("-----");
         }
     }
 
     public  List<List<String>> groupAnagrams(String[] strs) {
-
         for (int i = 0, l = strs.length; i < l; i++) {
             Arrays.fill(A, 0);
             String s = strs[i];
-            for (int j = 0, sl = s.length(); j < sl; j++) {
+            for (int j = 0, sl = s.length(); j < sl; j++)
                 A[s.charAt(j)]++;
-            }
+
             StringBuilder sb = new StringBuilder();
             for (int k = 0; k < 256; k++) {
                 if (A[k] != 0)
@@ -72,7 +72,7 @@ public class GroupAnagrams {
             hashMap.put(sb.toString(), value);
         }
 
-        for (String s : hashMap.keySet() )
+        for (String s : hashMap.keySet())
             result.add(hashMap.get(s));
 
         return result;
