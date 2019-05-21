@@ -40,8 +40,11 @@ public class ReverseLinkedList {
     }
 
     public ListNode reverseList(ListNode head) {
-        if (head == null) return null;
-        else if (head.next == null) return head;
+        if (head == null){
+            return null;
+        }else if (head.next == null){
+            return head;
+        }
         reverse(head).next = null;
         return newHead;
     }

@@ -13,13 +13,13 @@ package aleetcode;
 public class BigDataSum {
 
     public static String addStrings2(String num1, String num2) {
-        StringBuilder result = new StringBuilder(5200);
 
+        StringBuilder result = new StringBuilder(5200);
         int carry = 0; //carry 是进位标志。
         int len1 = num1.length();
         int len2 = num2.length();
 
-        while(len1>0 || len2 > 0 || carry > 0) {
+        while(len1>0 || len2 > 0 || carry > 0) {//异或的结构
             int tem = carry;
             if(len1 > 0) {
                 len1--;

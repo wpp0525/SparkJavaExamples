@@ -38,6 +38,7 @@ public class StringToInteger {
         }
         str = str.substring(0, i);
         long num = 0;
+
         for (int j = 0, l = str.length(); j < l; j++) {
             int n = (str.charAt(j) - '0');
             num *= 10;

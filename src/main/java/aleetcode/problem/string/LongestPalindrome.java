@@ -25,12 +25,13 @@ import java.util.*;
 public class LongestPalindrome {
 
     /**
-     * Main method
+     * Main method 最长回文长度
      * @param args
      */
     public static void main(String[] args) {
-        int result = new LongestPalindrome().longestPalindrome(
-                "asdfasdf");
+//        int result = new LongestPalindrome().longestPalindrome("asdfasdf");
+//        int result = new LongestPalindrome().longestPalindrome("dccaccd");
+        int result = new LongestPalindrome().longestPalindrome("ab1a");
         System.out.println(result);
     }
 

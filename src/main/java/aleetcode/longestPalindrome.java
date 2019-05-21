@@ -3,6 +3,10 @@ package aleetcode;
 
 import java.util.LinkedList;
 
+/**
+ *  最长回文串
+ */
+
 class longestPalindrome {//典型暴力枚举法，显然超时
 
     public static boolean judge(String s)
@@ -39,18 +43,15 @@ class longestPalindrome {//典型暴力枚举法，显然超时
     public static LinkedList<String> longestPalindrome3(String s) {
         LinkedList<String> result = new LinkedList<String>();
         int len=s.length();
-        if(len<2)
-        {
+        if(len<2) {
             result.add(s);
             return result;
         }
-        for(int i=len;i>0;i--)
-        {
-            for(int j=0;j<=len-i;j++)
-            {
+        for(int i=len;i>0;i--){
+            for(int j=0;j<=len-i;j++){
+
                 String str= s.substring(j,j+i);  //先从整体判断,在一步步缩小范围
-                if(judge(str)  && str.length() >= 2)
-                {
+                if(judge(str)  && str.length() >= 2) {
                     result.add(str);
                 }
             }

@@ -24,11 +24,31 @@ public class QuickSort {
 
     public static void quickSort(Integer[] list, int low, int high) {
         if (low < high) {
-            int middle = getMiddle(list, low, high);  //将list数组进行一分为二
+            int middle = getMiddle2(list, low, high);  //将list数组进行一分为二
             quickSort(list, low, middle - 1);        //对低字表进行递归排序
             quickSort(list, middle + 1, high);       //对高字表进行递归排序
         }
     }
+
+    public static int getMiddle2(Integer[] list, int low, int high){
+
+       int temp = list[low];
+        if(low < high){
+            while (low < high && temp < list[high]){
+                    high--;
+            }
+            list[low] = list[high];
+
+            while(low < high && temp > list[low]){
+                low++;
+            }
+            list[high] = list[low];
+        }
+        list[low]   = temp;
+        return  low;
+
+    }
+
 
     //核心是拿到中位数,同时对相关数据进行替换.
     public  static int getMiddle(Integer[] list, int low, int high) {
