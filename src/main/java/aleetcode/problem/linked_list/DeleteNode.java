@@ -21,17 +21,27 @@ public class DeleteNode {
         node.next = new ListNode(2);
         node.next.next = new ListNode(3);
         node.next.next.next = new ListNode(4);
+
         new DeleteNode().deleteNode(node.next.next);
+
+        ListNode node2 = node;
+
+        new DeleteNode().deleteNode(node.next);
+
         while (node != null) {
             System.out.println(node.val);
             node = node.next;
         }
     }
 
+
+
+
     public void deleteNode(ListNode node) {
         ListNode prev = node;
         ListNode last = node;
         ListNode next = node.next;
+
         while (next != null) {
             last = prev;
             int temp = prev.val;

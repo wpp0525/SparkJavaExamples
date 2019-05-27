@@ -9,6 +9,8 @@ import java.util.Set;
  * <p>
  * Follow up:
  * Can you solve it without using extra space?
+ *
+ * 是否有循环链表
  */
 public class LinkedListCycle {
     private static Set<Integer> hashCode = new HashSet<>();
@@ -32,9 +34,12 @@ public class LinkedListCycle {
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);
         ListNode node3 = new ListNode(3);
+        ListNode node4 = new ListNode(4);
         node1.next = node2;
         node2.next = node3;
         node3.next = node1;
+        node4.next = node1;
+
         System.out.println(new LinkedListCycle().hasCycle(node1));
     }
 

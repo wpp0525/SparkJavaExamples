@@ -17,13 +17,13 @@ import java.util.Map;
  * <p>
  * root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
  * <p>
- * 10
- * /  \
- * 5   -3
- * / \    \
- * 3   2   11
- * / \   \
- * 3  -2   1
+         10
+         /   \
+         5   -3
+         / \    \
+        3  2   11
+         / \    \
+        3  -2   1
  * <p>
  * Return 3. The paths that sum to 8 are:
  * <p>

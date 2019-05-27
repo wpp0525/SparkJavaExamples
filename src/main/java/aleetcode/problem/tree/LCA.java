@@ -4,7 +4,8 @@ package aleetcode.problem.tree;
  * Created by gouthamvidyapradhan on 21/03/2017.
  * Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
  * <p>
- * According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself).”
+ * According to the definition of LCA on Wikipedia: “
+ * The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself).”
  * <p>
  * _______3______
  * /              \
@@ -13,7 +14,8 @@ package aleetcode.problem.tree;
  * 6      _2       0       8
  * /  \
  * 7   4
- * For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
+ * For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3.
+ * Another example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
  */
 public class LCA {
     public class TreeNode {
