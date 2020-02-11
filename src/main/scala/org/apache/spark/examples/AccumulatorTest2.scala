@@ -22,6 +22,7 @@ import scala.util.Random
 
 // 重写累计器
 object MapAccumulatorParam extends AccumulatorParam[Map[String, Int]] {
+
   def addInPlace(t1: Map[String, Int], t2: Map[String, Int]): Map[String, Int] = {
     for ((k, v) <- t2) {
       t1.get(k) match {
@@ -39,13 +40,14 @@ object MapAccumulatorParam extends AccumulatorParam[Map[String, Int]] {
 object AccumulatorTest2 {
 
   def main(args: Array[String]): Unit = {
-    val sparkConf = new SparkConf().setAppName("AccumulatorTest2")
+
+    val sparkConf = new SparkConf().setAppName("AccumulatorTest2").setMaster("local")
     val ctx = new SparkContext(sparkConf)
 
     val accum = ctx.accumulator(Map[String, Int](), "My Accumulator2")(MapAccumulatorParam)
 
     // 抽样 1000000 万次，平均每个数应该在 100 次（随机的）
-    ctx.parallelize(1 to 1000000, 10).foreach(i => {
+    ctx.parallelize(1 to 1001000, 10).foreach(i => {
       val r = Random.nextInt(10000)
       if (5000 < r && r <= 5010) {
         accum += Map(r.toString -> 1)
