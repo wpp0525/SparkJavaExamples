@@ -32,17 +32,21 @@ object DummyCountScala {
 		val sc = new SparkContext(sparkConf)
 
 		val alist =  List.range(1L, 8L)
-		print(alist)
+		println(alist)
+
 		val distData = sc.parallelize(alist, 5)
 //		val distData = sc.parallelize(1 to 100, 5)
 		println(distData.collect())
 //		println(distData.collect().mkString())
 
-		distData.flatMap(x => List.range(1L, 101L)).mapPartitions( x => {
-			 println(x)
-				val rng = new Random()
-				for (i <- x) yield rng.nextLong()
-		}).take(1)
+		distData
+			.flatMap(x => List.range(x, 101L))
+			.mapPartitions( x => {
+//				   println(x.foreach)
+					val rng = new Random()
+					for (i <- x) yield rng.nextLong()
+			})
+			.take(1)
 
     sc.stop()
 	}

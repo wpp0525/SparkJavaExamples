@@ -48,7 +48,6 @@ object WordCountKafkaSum {
 //    },Seconds(60),Seconds(10)).print()
 
 
-
 //    resultRdd3.saveAsTextFiles("./wpprest")
 
     sc.start()

@@ -18,6 +18,7 @@ package org.apache.spark.examples
 import org.apache.spark.{SparkConf, SparkContext}
 
 object PageRank {
+
   def showWarning() {
     System.err.println(
       """WARN: This is a naive implementation of PageRank and is given as an example!

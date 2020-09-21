@@ -22,6 +22,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 import scala.io.Source
 
 object FilesAndArchivesTest {
+
   def main(args: Array[String]): Unit = {
     // 注意用户采用的是 --files localtest.txt#appSees.txt 形式进行提交的，参数也需要带一个 appSees.txt，这样我们知道
     if (args.length < 3) {

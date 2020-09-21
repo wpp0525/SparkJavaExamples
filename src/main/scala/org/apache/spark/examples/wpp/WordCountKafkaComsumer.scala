@@ -34,6 +34,7 @@ object WordCountKafkaComsumer {
     //    resultrdd.map(x => println(x._1+"--"+x._2))
 
     resultrdd.print()
+
     sc.start()
     sc.awaitTermination()
     sc.stop()

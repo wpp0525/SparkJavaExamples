@@ -36,6 +36,7 @@ object HBaseTest {
     conf.set(TableInputFormat.INPUT_TABLE, args(0))
 
     val sparkConf = new SparkConf().setAppName("HBaseTest")
+
     val sc = new SparkContext(sparkConf)
 
     // Initialize hBase table if necessary
@@ -55,4 +56,5 @@ object HBaseTest {
     sc.stop()
     admin.close()
   }
+
 }

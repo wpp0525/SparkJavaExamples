@@ -40,7 +40,10 @@ object GroupByKeyTest {
     //groupByKey
     val result3 = dataPair.groupByKey()
     //此时返回的是RDD:String,Iterable<Integer>,下面的代码对  x._2进行一个累加
-    val result4 = result3.map(x=>(x._1,x._2.sum))
+    val result4 = result3.map(x=>{
+       println(x._1,x._2)
+      (x._1, x._2.sum)
+    })
 
     result4.foreach(println)
 

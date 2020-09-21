@@ -35,8 +35,8 @@ object PageRank2 {
 
     val sc = new SparkContext(sparkConf)
 
-    val links = sc.parallelize(List(("A",List("B","C")),("B",List("A","C")),("C",List("A","B","D")),("D",List("C")))).
-      partitionBy(new HashPartitioner(100)).persist()
+    val links = sc.parallelize(List(("A",List("B","C")),("B",List("A","C")),("C",List("A","B","D")),("D",List("C"))))
+      .partitionBy(new HashPartitioner(10)).persist()
 
     var ranks = links.mapValues(v=>1.0)
 
@@ -46,6 +46,7 @@ object PageRank2 {
       }
       ranks=contributions.reduceByKey((x,y)=>x+y).mapValues(v=>0.15+0.85*v)
     }
+
     print("====result===========")
     ranks.sortByKey().collect().foreach(println)
 
